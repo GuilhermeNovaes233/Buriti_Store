@@ -21,6 +21,8 @@ namespace Buriti_store.Catalog.Domain
             DateRegister = dateRegister;
             Image = image;
             CategoryId = categoryId;
+
+            Validate();
         }
 
         public string Name { get; private set; }

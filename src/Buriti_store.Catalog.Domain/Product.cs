@@ -65,7 +65,11 @@ namespace Buriti_store.Catalog.Domain
 
         public void Validate()
         {
-
+            Validations.ValidateIfEmpty(Name, "O campo Nome do produto não pode estar vazio");
+            Validations.ValidateIfEmpty(Description, "O campo Descricao do produto não pode estar vazio");
+            Validations.ValidateEquals(CategoryId, Guid.Empty, "O campo CategoriaId do produto não pode estar vazio");
+            Validations.ValidateIfLessThan(Value, 1, "O campo Valor do produto não pode se menor igual a 0");
+            Validations.ValidateIfEmpty(Image, "O campo Imagem do produto não pode estar vazio");
         }
     }
 }

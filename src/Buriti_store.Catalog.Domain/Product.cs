@@ -46,12 +46,14 @@ namespace Buriti_store.Catalog.Domain
 
         public void UpdateDescription(string description)
         {
+            Validations.ValidateIfEmpty(description, "O campo Descricao do produto não pode estar vazio");
             Description = description;
         }
 
         public void DebitStock(int quantity)
         {
             if (quantity < 0) quantity *= -1;
+            if (!HaveStock(quantity)) throw new DomainException("Estoque insuficiente");
             QuantityStock -= quantity;
         }
 

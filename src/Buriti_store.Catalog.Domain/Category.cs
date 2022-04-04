@@ -8,6 +8,8 @@ namespace Buriti_store.Catalog.Domain
         {
             Name = name;
             Code = code;
+
+            Validate();
         }
 
         public string Name { get; private set; }
@@ -16,6 +18,12 @@ namespace Buriti_store.Catalog.Domain
         public override string ToString()
         {
             return $"{Name} - {Code}";
+        }
+
+        public void Validate()
+        {
+            Validations.ValidateIfEmpty(Name, "O campo Nome da categoria não pode estar vazio");
+            Validations.ValidateEquals(Code, 0, "O campo Codigo não pode ser 0");
         }
     }
 }

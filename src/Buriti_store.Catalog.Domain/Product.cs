@@ -12,7 +12,8 @@ namespace Buriti_store.Catalog.Domain
             decimal value, 
             Guid categoryId,
             DateTime dateRegister, 
-            string image)
+            string image,
+            Dimensions dimensions)
         {
             Name = name;
             Description = description;
@@ -21,6 +22,7 @@ namespace Buriti_store.Catalog.Domain
             DateRegister = dateRegister;
             Image = image;
             CategoryId = categoryId;
+            Dimensions = dimensions;
 
             Validate();
         }
@@ -34,7 +36,7 @@ namespace Buriti_store.Catalog.Domain
         public int QuantityStock { get; private set; }
         public Guid CategoryId { get; private set; }
         public Category Category { get; private set; }
-
+        public Dimensions Dimensions { get; private set; }
         public void Activate() => IsActive = true;
         public void Disable() => IsActive = false;
 

@@ -1,9 +1,12 @@
 ﻿using Buriti_Store.Core.DomainObjects;
+using System.Collections.Generic;
 
 namespace Buriti_store.Catalog.Domain
 {
     public class Category : Entity
     {
+        protected Category() { }
+
         public Category(string name, int code)
         {
             Name = name;
@@ -14,6 +17,9 @@ namespace Buriti_store.Catalog.Domain
 
         public string Name { get; private set; }
         public int Code { get; private set; }
+
+        // EF Relation
+        public ICollection<Product> Products { get; set; }
 
         public override string ToString()
         {

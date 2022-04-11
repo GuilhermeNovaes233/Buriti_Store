@@ -7,9 +7,9 @@ namespace Buriti_store.Catalog.Domain
     {
         public Dimensions(decimal height, decimal width, decimal depth)
         {
-            Validations.ValidateIfLessThan(height, 1, "O campo Height não pode ser menor ou igual a 0");
-            Validations.ValidateIfLessThan(width, 1, "O campo Width não pode ser menor ou igual a 0");
-            Validations.ValidateIfLessThan(depth, 1, "O campo Depth não pode ser menor ou igual a 0");
+            Validations.ValidateIfLessThan(height, 1, "O campo Altura não pode ser menor ou igual a 0");
+            Validations.ValidateIfLessThan(width, 1, "O campo Largura não pode ser menor ou igual a 0");
+            Validations.ValidateIfLessThan(depth, 1, "O campo Profundidade não pode ser menor ou igual a 0");
 
             Height = height;
             Width = width;

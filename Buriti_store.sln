@@ -25,9 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buriti_Store.Core", "src\Bu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{067F1EC4-049E-40AC-88F9-28D5A77DB85B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buriti.Catalog.Domain.Tests", "tests\Buriti.Catalog.Domain.Tests\Buriti.Catalog.Domain.Tests.csproj", "{D54B8EE9-A0CD-4AFF-8888-C641E288CE11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buriti.Catalog.Domain.Tests", "tests\Buriti.Catalog.Domain.Tests\Buriti.Catalog.Domain.Tests.csproj", "{D54B8EE9-A0CD-4AFF-8888-C641E288CE11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buriti_store.Catalog.Data", "src\Buriti_store.Catalog.Data\Buriti_store.Catalog.Data.csproj", "{CC6C98A5-AAE4-42D6-B253-D3DA39FB503F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buriti_store.Catalog.Data", "src\Buriti_store.Catalog.Data\Buriti_store.Catalog.Data.csproj", "{CC6C98A5-AAE4-42D6-B253-D3DA39FB503F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buriti_store.Catalog.Application", "src\Buriti_store.Catalog.Application\Buriti_store.Catalog.Application.csproj", "{C83DE3A7-3D27-4304-AEB4-4925D18BE9B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{CC6C98A5-AAE4-42D6-B253-D3DA39FB503F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC6C98A5-AAE4-42D6-B253-D3DA39FB503F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC6C98A5-AAE4-42D6-B253-D3DA39FB503F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C83DE3A7-3D27-4304-AEB4-4925D18BE9B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C83DE3A7-3D27-4304-AEB4-4925D18BE9B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C83DE3A7-3D27-4304-AEB4-4925D18BE9B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C83DE3A7-3D27-4304-AEB4-4925D18BE9B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{067F1EC4-049E-40AC-88F9-28D5A77DB85B} = {D4CC9E92-8C2B-4307-975D-AE7839F0AF63}
 		{D54B8EE9-A0CD-4AFF-8888-C641E288CE11} = {067F1EC4-049E-40AC-88F9-28D5A77DB85B}
 		{CC6C98A5-AAE4-42D6-B253-D3DA39FB503F} = {D4CC9E92-8C2B-4307-975D-AE7839F0AF63}
+		{C83DE3A7-3D27-4304-AEB4-4925D18BE9B8} = {D4CC9E92-8C2B-4307-975D-AE7839F0AF63}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3D03C45-1691-4E82-A7B2-1AAD357C8D08}

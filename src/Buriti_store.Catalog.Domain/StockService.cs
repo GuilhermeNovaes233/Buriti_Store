@@ -1,4 +1,6 @@
-﻿using Buriti_store.Catalog.Domain.Interfaces;
+﻿using Buriti_store.Catalog.Domain.Events;
+using Buriti_store.Catalog.Domain.Interfaces;
+using Buriti_Store.Core.Bus;
 using System;
 using System.Threading.Tasks;
 
@@ -7,9 +9,14 @@ namespace Buriti_store.Catalog.Domain
     public class StockService : IStockService
     {
         private readonly IProductRepository _productRepository;
-        public StockService(IProductRepository productRepository)
+        private readonly IMediatrHandler _mediatr;
+
+        public StockService(
+            IProductRepository productRepository, 
+            IMediatrHandler mediatr)
         {
             _productRepository = productRepository;
+            _mediatr = mediatr;
         }
 
         public async Task<bool> DebitStock(Guid productId, int quantity)
@@ -21,6 +28,11 @@ namespace Buriti_store.Catalog.Domain
             if (!product.HaveStock(quantity)) return false;
 
             product.DebitStock(quantity);
+
+            if(product.QuantityStock <= 10)
+            {
+                await _mediatr.PublishEvent(new ProductOutOfStockEvent(product.Id, product.QuantityStock));
+            }
 
             _productRepository.Update(product);
 

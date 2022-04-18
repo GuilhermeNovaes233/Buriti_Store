@@ -46,6 +46,6 @@ namespace Buriti_store.Catalog.Application.ViewModels
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public int Depth { get; set; }
 
-        public IEnumerable<CategoryViewModel> Cateories { get; set; }
+        public IEnumerable<CategoryViewModel> Categories { get; set; }
     }
 }

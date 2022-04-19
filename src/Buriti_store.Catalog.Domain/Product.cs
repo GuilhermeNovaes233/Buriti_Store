@@ -4,7 +4,10 @@ using System;
 namespace Buriti_store.Catalog.Domain
 {
     public class Product : Entity, IAggregateRoot
-    {
+    { 
+        //EF
+        protected Product() { }
+
         public Product(
             string name,
             string description, 

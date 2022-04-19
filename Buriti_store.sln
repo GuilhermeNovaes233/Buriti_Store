@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buriti_store.Catalog.Data",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buriti_store.Catalog.Application", "src\Buriti_store.Catalog.Application\Buriti_store.Catalog.Application.csproj", "{C83DE3A7-3D27-4304-AEB4-4925D18BE9B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buriti_Store.WebApp.MVC", "Buriti_Store.WebApp.MVC\Buriti_Store.WebApp.MVC.csproj", "{32387E3C-6191-4B9D-8E31-92AB186CE7DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buriti_Store.WebApp.MVC", "src/Buriti_Store.WebApp.MVC\Buriti_Store.WebApp.MVC.csproj", "{32387E3C-6191-4B9D-8E31-92AB186CE7DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

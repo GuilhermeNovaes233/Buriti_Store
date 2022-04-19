@@ -5,4 +5,18 @@
   </PropertyGroup>
 
 
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+	</ItemGroup>
+	
+  <ItemGroup>
+    <ProjectReference Include="..\Buriti_store.Catalog.Application\Buriti_store.Catalog.Application.csproj" />
+    <ProjectReference Include="..\Buriti_store.Catalog.Data\Buriti_store.Catalog.Data.csproj" />
+    <ProjectReference Include="..\Buriti_store.Catalog.Domain\Buriti_store.Catalog.Domain.csproj" />
+    <ProjectReference Include="..\Buriti_Store.Core\Buriti_Store.Core.csproj" />
+  </ItemGroup>
+
+
 </Project>

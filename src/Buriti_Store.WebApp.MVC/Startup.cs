@@ -1,3 +1,4 @@
+using AutoMapper;
 using Buriti_store.Catalog.Application.AutoMapper;
 using Buriti_store.Catalog.Data;
 using Buriti_Store.WebApp.MVC.Data;
@@ -5,7 +6,6 @@ using Buriti_Store.WebApp.MVC.Setup;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,25 +25,20 @@ namespace Buriti.WebApp.MVC
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
-            services.AddDbContext<CatalogContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentityCore<IdentityUser>()
+            services.AddDbContext<CatalogContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
+            services.AddControllersWithViews();
+            services.AddRazorPages();
 
+            services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
             services.AddMediatR(typeof(Startup));
 
             services.RegisterServices();
@@ -54,24 +49,27 @@ namespace Buriti.WebApp.MVC
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Vitrine}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

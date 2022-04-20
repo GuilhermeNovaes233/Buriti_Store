@@ -61,7 +61,7 @@ namespace Buriti_store.Catalog.Data.Repositories
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

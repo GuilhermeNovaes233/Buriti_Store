@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Register", "Register", "{98
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payments", "Payments", "{3F39D862-E800-4D52-81CE-272C67FDBED9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Supervisor", "Supervisor", "{3589814C-A19D-4206-8FA7-B7C652B19357}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fiscal", "Fiscal", "{3589814C-A19D-4206-8FA7-B7C652B19357}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orders", "Orders", "{42A8727E-6831-424A-A89A-6FE3CCCCDFCA}"
 EndProject
@@ -31,7 +31,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buriti_store.Catalog.Data",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buriti_store.Catalog.Application", "src\Buriti_store.Catalog.Application\Buriti_store.Catalog.Application.csproj", "{C83DE3A7-3D27-4304-AEB4-4925D18BE9B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buriti_Store.WebApp.MVC", "src/Buriti_Store.WebApp.MVC\Buriti_Store.WebApp.MVC.csproj", "{32387E3C-6191-4B9D-8E31-92AB186CE7DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buriti_Store.WebApp.MVC", "src\Buriti_Store.WebApp.MVC\Buriti_Store.WebApp.MVC.csproj", "{32387E3C-6191-4B9D-8E31-92AB186CE7DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buriti_Store.Orders.Domain", "src\Orders\Buriti_Store.Orders.Domain\Buriti_Store.Orders.Domain.csproj", "{34F6831D-507D-4FF1-A66A-8D50CF880493}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buriti_Store.Orders.Application", "src\Orders\Buriti_Store.Orders.Application\Buriti_Store.Orders.Application.csproj", "{7403B876-26EC-451B-8160-FBD17FD12531}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buriti_Store.Orders.Data", "src\Orders\Buriti_Store.Orders.Data\Buriti_Store.Orders.Data.csproj", "{10A2E3A4-480F-478A-AF9C-2B06BB62D8CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +69,18 @@ Global
 		{32387E3C-6191-4B9D-8E31-92AB186CE7DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32387E3C-6191-4B9D-8E31-92AB186CE7DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32387E3C-6191-4B9D-8E31-92AB186CE7DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34F6831D-507D-4FF1-A66A-8D50CF880493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34F6831D-507D-4FF1-A66A-8D50CF880493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34F6831D-507D-4FF1-A66A-8D50CF880493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34F6831D-507D-4FF1-A66A-8D50CF880493}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7403B876-26EC-451B-8160-FBD17FD12531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7403B876-26EC-451B-8160-FBD17FD12531}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7403B876-26EC-451B-8160-FBD17FD12531}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7403B876-26EC-451B-8160-FBD17FD12531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10A2E3A4-480F-478A-AF9C-2B06BB62D8CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10A2E3A4-480F-478A-AF9C-2B06BB62D8CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10A2E3A4-480F-478A-AF9C-2B06BB62D8CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10A2E3A4-480F-478A-AF9C-2B06BB62D8CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +99,9 @@ Global
 		{CC6C98A5-AAE4-42D6-B253-D3DA39FB503F} = {D4CC9E92-8C2B-4307-975D-AE7839F0AF63}
 		{C83DE3A7-3D27-4304-AEB4-4925D18BE9B8} = {D4CC9E92-8C2B-4307-975D-AE7839F0AF63}
 		{32387E3C-6191-4B9D-8E31-92AB186CE7DA} = {3F0FEB06-57CD-44A6-A340-70BEA92AD601}
+		{34F6831D-507D-4FF1-A66A-8D50CF880493} = {42A8727E-6831-424A-A89A-6FE3CCCCDFCA}
+		{7403B876-26EC-451B-8160-FBD17FD12531} = {42A8727E-6831-424A-A89A-6FE3CCCCDFCA}
+		{10A2E3A4-480F-478A-AF9C-2B06BB62D8CC} = {42A8727E-6831-424A-A89A-6FE3CCCCDFCA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3D03C45-1691-4E82-A7B2-1AAD357C8D08}

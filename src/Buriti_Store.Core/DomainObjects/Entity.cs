@@ -47,5 +47,10 @@ namespace Buriti_Store.Core.DomainObjects
         {
             return $"{GetType().Name} [Id={Id}]";
         }
+
+        public virtual bool IsValid()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

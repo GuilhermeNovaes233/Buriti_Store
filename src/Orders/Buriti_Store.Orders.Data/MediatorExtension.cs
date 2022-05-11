@@ -8,7 +8,7 @@ namespace NerdStore.Vendas.Data
 {
     public static class MediatorExtension
     {
-        public static async Task PublishEvents(this IMediatrHandler mediator, OrderContext ctx)
+        public static async Task PublishEvents(this IMediatorHandler mediator, OrderContext ctx)
         {
             var domainEntities = ctx.ChangeTracker
                 .Entries<Entity>()

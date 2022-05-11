@@ -12,9 +12,9 @@ namespace Buriti_Store.Orders.Data
 {
     public class OrderContext : DbContext, IUnitOfWork
     {
-        private readonly IMediatrHandler _mediatrHandler;
+        private readonly IMediatorHandler _mediatrHandler;
 
-        public OrderContext(DbContextOptions<OrderContext> options, IMediatrHandler mediatrHandler)
+        public OrderContext(DbContextOptions<OrderContext> options, IMediatorHandler mediatrHandler)
             : base(options)
         {
             _mediatrHandler = mediatrHandler;

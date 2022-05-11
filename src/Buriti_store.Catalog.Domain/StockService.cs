@@ -9,11 +9,11 @@ namespace Buriti_store.Catalog.Domain
     public class StockService : IStockService
     {
         private readonly IProductRepository _productRepository;
-        private readonly IMediatrHandler _mediatr;
+        private readonly IMediatorHandler _mediatr;
 
         public StockService(
             IProductRepository productRepository, 
-            IMediatrHandler mediatr)
+            IMediatorHandler mediatr)
         {
             _productRepository = productRepository;
             _mediatr = mediatr;

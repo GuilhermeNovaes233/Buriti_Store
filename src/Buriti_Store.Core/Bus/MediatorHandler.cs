@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace Buriti_Store.Core.Bus
 {
-    public class MediatrHandler : IMediatrHandler
+    public class MediatorHandler : IMediatorHandler
     {
         private readonly IMediator _mediatr;
 
-        public MediatrHandler(IMediator mediatr)
+        public MediatorHandler(IMediator mediatr)
         {
             _mediatr = mediatr;
         }
@@ -16,6 +16,11 @@ namespace Buriti_Store.Core.Bus
         public async Task PublishEvent<T>(T evento) where T : Event
         {
             await _mediatr.Publish(evento);
+        }
+
+        public async Task<bool> SendCommand<T>(T command) where T : Command
+        {
+            return await _mediatr.Send(command);
         }
     }
 }

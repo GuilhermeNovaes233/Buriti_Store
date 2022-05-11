@@ -8,6 +8,7 @@ using Buriti_store.Catalog.Domain.Interfaces;
 using Buriti_Store.Core.Bus;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Buriti_Store.Orders.Application.Commands;
 
 namespace Buriti_Store.WebApp.MVC.Setup
 {
@@ -25,6 +26,9 @@ namespace Buriti_Store.WebApp.MVC.Setup
             services.AddScoped<CatalogContext>();
 
             services.AddScoped<INotificationHandler<ProductOutOfStockEvent>, ProductEventHandler>();
+
+            //Orders
+            services.AddScoped<IRequestHandler<AddOrderItemCommand, bool>, OrderCommandHandler>();
         }
     }
 }

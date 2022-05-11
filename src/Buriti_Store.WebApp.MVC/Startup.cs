@@ -1,6 +1,7 @@
 using AutoMapper;
 using Buriti_store.Catalog.Application.AutoMapper;
 using Buriti_store.Catalog.Data;
+using Buriti_Store.Orders.Data;
 using Buriti_Store.WebApp.MVC.Data;
 using Buriti_Store.WebApp.MVC.Setup;
 using MediatR;
@@ -30,6 +31,9 @@ namespace Buriti.WebApp.MVC
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<CatalogContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<OrderContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)

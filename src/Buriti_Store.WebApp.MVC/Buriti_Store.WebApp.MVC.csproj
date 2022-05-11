@@ -22,6 +22,7 @@
     <ProjectReference Include="..\Buriti_store.Catalog.Domain\Buriti_store.Catalog.Domain.csproj" />
     <ProjectReference Include="..\Buriti_Store.Core\Buriti_Store.Core.csproj" />
     <ProjectReference Include="..\Orders\Buriti_Store.Orders.Application\Buriti_Store.Orders.Application.csproj" />
+    <ProjectReference Include="..\Orders\Buriti_Store.Orders.Data\Buriti_Store.Orders.Data.csproj" />
   </ItemGroup>
 
 

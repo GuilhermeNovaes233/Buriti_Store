@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Buriti_Store.Core\Buriti_Store.Core.csproj" />
+    <ProjectReference Include="..\Buriti_Store.Orders.Domain\Buriti_Store.Orders.Domain.csproj" />
   </ItemGroup>
 
 </Project>

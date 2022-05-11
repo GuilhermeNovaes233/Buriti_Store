@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Buriti_Store.Core.Data;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Buriti_Store.Orders.Domain.Interfaces
 {
-    public interface IOrderRepository
+    public interface IOrderRepository : IRepository<Order>
     {
         Task<Order> GetById(Guid id);
         Task<IEnumerable<Order>> GetListByClientId(Guid clientId);

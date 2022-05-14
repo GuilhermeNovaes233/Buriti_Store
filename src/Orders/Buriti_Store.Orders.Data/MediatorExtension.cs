@@ -4,7 +4,7 @@ using Buriti_Store.Core.Bus;
 using Buriti_Store.Core.DomainObjects;
 using Buriti_Store.Orders.Data;
 
-namespace NerdStore.Vendas.Data
+namespace Buriti_Store.Vendas.Data
 {
     public static class MediatorExtension
     {

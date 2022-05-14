@@ -2,7 +2,7 @@
 using Buriti_Store.WebApp.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace NerdStore.WebApp.MVC.Controllers
+namespace Buriti_Store.WebApp.MVC.Controllers
 {
     public class HomeController : Controller
     {

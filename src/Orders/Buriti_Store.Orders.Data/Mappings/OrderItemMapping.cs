@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace NerdStore.Catalogo.Data.Mappings
+namespace Buriti_Store.Catalog.Data.Mappings
 {
     public class OrderItemMapping : IEntityTypeConfiguration<OrderItem>
     {

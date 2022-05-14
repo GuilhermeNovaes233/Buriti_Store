@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Buriti_store.Catalog.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace NerdStore.WebApp.MVC.Controllers
+namespace Buriti_Store.WebApp.MVC.Controllers
 {
     public class ShowcaseController : Controller
     {

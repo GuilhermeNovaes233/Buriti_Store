@@ -6,7 +6,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Buriti_Store.Core.Bus;
-using NerdStore.Vendas.Data;
+using Buriti_Store.Vendas.Data;
 
 namespace Buriti_Store.Orders.Data
 {

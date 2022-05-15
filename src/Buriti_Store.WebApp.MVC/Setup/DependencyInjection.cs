@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Buriti_Store.Orders.Application.Commands;
 using Buriti_Store.Core.Messages.CommonMessages.Notifications;
 using Buriti_Store.Core.Communication.Mediator;
+using Buriti_Store.Orders.Application.Events;
 
 namespace Buriti_Store.WebApp.MVC.Setup
 {
@@ -33,6 +34,10 @@ namespace Buriti_Store.WebApp.MVC.Setup
 
             //Orders
             services.AddScoped<IRequestHandler<AddOrderItemCommand, bool>, OrderCommandHandler>();
+
+            services.AddScoped<INotificationHandler<OrderDraftStartedEvent>, OrderEventHandler>();
+            services.AddScoped<INotificationHandler<OrderItemAddedEvent>, OrderEventHandler>();
+            services.AddScoped<INotificationHandler<OrderUpdateEvent>, OrderEventHandler>();
         }
     }
 }

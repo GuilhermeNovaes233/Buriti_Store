@@ -1,5 +1,6 @@
 ﻿using Buriti_store.Catalog.Domain;
 using Buriti_Store.Core.Data;
+using Buriti_Store.Core.Messages;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace Buriti_store.Catalog.Data
             foreach (var property in modelBuilder.Model.GetEntityTypes().SelectMany(
                 e => e.GetProperties().Where(p => p.ClrType == typeof(string))))
                 property.SetColumnType("varchar(100)");
+
+            modelBuilder.Ignore<Event>();
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogContext).Assembly);
         }

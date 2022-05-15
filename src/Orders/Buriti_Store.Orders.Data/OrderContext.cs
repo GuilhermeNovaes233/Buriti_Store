@@ -39,10 +39,10 @@ namespace Buriti_Store.Orders.Data
                 }
             }
 
-            var sucesso = await base.SaveChangesAsync() > 0;
-            if (sucesso) await _mediatrHandler.PublishEvents(this);
+            var sucess = await base.SaveChangesAsync() > 0;
+            if (sucess) await _mediatrHandler.PublishEvents(this);
 
-            return sucesso;
+            return sucess;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

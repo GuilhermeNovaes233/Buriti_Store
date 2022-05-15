@@ -1,6 +1,7 @@
 ﻿using Buriti_Store.Core.Communication.Mediator;
 using Buriti_Store.Core.Messages;
 using Buriti_Store.Core.Messages.CommonMessages.Notifications;
+using Buriti_Store.Orders.Application.Events;
 using Buriti_Store.Orders.Domain;
 using Buriti_Store.Orders.Domain.Interfaces;
 using MediatR;
@@ -36,6 +37,8 @@ namespace Buriti_Store.Orders.Application.Commands
                 order.AddItem(orderItem);
 
                 _orderRepository.Add(order);
+
+                order.AddEvent(new OrderDraftStartedEvent(message.ClientId, message.ProductId));
             }
             else
             {

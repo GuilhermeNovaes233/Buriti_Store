@@ -21,14 +21,14 @@ namespace Buriti_Store.Core.Messages.CommonMessages.Notifications
             return Task.CompletedTask;
         }
 
-        public virtual List<DomainNotification> ObterNotificacoes()
+        public virtual List<DomainNotification> GetNotifications()
         {
             return _notifications;
         }
 
-        public virtual bool TemNotificacao()
+        public virtual bool HasNotification()
         {
-            return ObterNotificacoes().Any();
+            return GetNotifications().Any();
         }
 
         public void Dispose()

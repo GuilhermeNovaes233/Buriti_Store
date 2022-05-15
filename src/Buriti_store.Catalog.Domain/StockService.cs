@@ -1,6 +1,6 @@
 ﻿using Buriti_store.Catalog.Domain.Events;
 using Buriti_store.Catalog.Domain.Interfaces;
-using Buriti_Store.Core.Bus;
+using Buriti_Store.Core.Communication.Mediator;
 using System;
 using System.Threading.Tasks;
 

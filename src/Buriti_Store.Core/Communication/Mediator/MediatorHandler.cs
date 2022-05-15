@@ -2,7 +2,7 @@
 using MediatR;
 using System.Threading.Tasks;
 
-namespace Buriti_Store.Core.Bus
+namespace Buriti_Store.Core.Communication.Mediator
 {
     public class MediatorHandler : IMediatorHandler
     {

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Buriti_Store.Orders.Application.Commands;
 using Buriti_store.Catalog.Application.Interfaces;
-using Buriti_Store.Core.Bus;
+using Buriti_Store.Core.Communication.Mediator;
 
 namespace Buriti_Store.WebApp.MVC.Controllers
 {

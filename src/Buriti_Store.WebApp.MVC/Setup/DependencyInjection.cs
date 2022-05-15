@@ -5,10 +5,11 @@ using Buriti_store.Catalog.Data.Repositories;
 using Buriti_store.Catalog.Domain;
 using Buriti_store.Catalog.Domain.Events;
 using Buriti_store.Catalog.Domain.Interfaces;
-using Buriti_Store.Core.Bus;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Buriti_Store.Orders.Application.Commands;
+using Buriti_Store.Core.Messages.CommonMessages.Notifications;
+using Buriti_Store.Core.Communication.Mediator;
 
 namespace Buriti_Store.WebApp.MVC.Setup
 {
@@ -18,6 +19,9 @@ namespace Buriti_Store.WebApp.MVC.Setup
         {
             // Domain Bus (Mediator)
             services.AddScoped<IMediatorHandler, MediatorHandler>();
+
+            // Notifications
+            services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
 
             // Catalogo
             services.AddScoped<IProductRepository, ProductRepository>();

@@ -1,4 +1,4 @@
-﻿using Buriti_Store.Core.DomainObjects;
+﻿using Buriti_Store.Core.Messages.CommonMessages.DomainEvents;
 using System;
 
 namespace Buriti_store.Catalog.Domain.Events

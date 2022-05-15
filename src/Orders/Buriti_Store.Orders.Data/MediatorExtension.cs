@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Buriti_Store.Core.Bus;
+using Buriti_Store.Core.Communication.Mediator;
 using Buriti_Store.Core.DomainObjects;
 using Buriti_Store.Orders.Data;
 

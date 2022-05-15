@@ -1,7 +1,7 @@
 ﻿using Buriti_Store.Core.Messages;
 using System.Threading.Tasks;
 
-namespace Buriti_Store.Core.Bus
+namespace Buriti_Store.Core.Communication.Mediator
 {
     public interface IMediatorHandler
     {

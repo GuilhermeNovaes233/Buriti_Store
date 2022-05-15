@@ -5,8 +5,8 @@ using Buriti_Store.Orders.Domain;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Buriti_Store.Core.Bus;
 using Buriti_Store.Vendas.Data;
+using Buriti_Store.Core.Communication.Mediator;
 
 namespace Buriti_Store.Orders.Data
 {

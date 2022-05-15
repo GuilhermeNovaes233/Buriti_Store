@@ -53,7 +53,11 @@ namespace Buriti_Store.Orders.Application.Commands
                 {
                     _orderRepository.AddItem(orderItem);
                 }
+
+                order.AddEvent(new OrderUpdateEvent(order.ClientId, order.Id, order.TotalValue));
             }
+
+            order.AddEvent(new OrderItemAddedEvent(order.ClientId, order.Id,message.ProductId, message.Name, message.ValueUnity, message.Quantity));
 
             return await _orderRepository.UnitOfWork.Commit();
         }

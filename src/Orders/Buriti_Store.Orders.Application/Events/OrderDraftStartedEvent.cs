@@ -5,14 +5,14 @@ namespace Buriti_Store.Orders.Application.Events
 {
     public class OrderDraftStartedEvent : Event
     {
-        public OrderDraftStartedEvent(Guid clienteId, Guid pedidoId)
+        public OrderDraftStartedEvent(Guid clientId, Guid orderId)
         {
-            AggregateId = pedidoId;
-            ClienteId = clienteId;
-            PedidoId = pedidoId;
+            AggregateId = orderId;
+            ClientId = clientId;
+            OrderId = orderId;
         }
 
-        public Guid ClienteId { get; private set; }
-        public Guid PedidoId { get; private set; }
+        public Guid ClientId { get; private set; }
+        public Guid OrderId { get; private set; }
     }
 }

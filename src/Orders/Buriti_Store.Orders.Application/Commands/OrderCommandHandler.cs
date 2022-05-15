@@ -1,4 +1,6 @@
-﻿using Buriti_Store.Core.Messages;
+﻿using Buriti_Store.Core.Communication.Mediator;
+using Buriti_Store.Core.Messages;
+using Buriti_Store.Core.Messages.CommonMessages.Notifications;
 using Buriti_Store.Orders.Domain;
 using Buriti_Store.Orders.Domain.Interfaces;
 using MediatR;
@@ -12,10 +14,13 @@ namespace Buriti_Store.Orders.Application.Commands
     public class OrderCommandHandler : IRequestHandler<AddOrderItemCommand, bool>
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly IMediatorHandler _mediatorHandler;
 
-        public OrderCommandHandler(IOrderRepository orderRepository)
+        public OrderCommandHandler(IOrderRepository orderRepository,
+                                   IMediatorHandler mediatorHandler)
         {
             _orderRepository = orderRepository;
+            _mediatorHandler = mediatorHandler;
         }
 
         public async Task<bool> Handle(AddOrderItemCommand message, CancellationToken cancellationToken)
@@ -56,7 +61,7 @@ namespace Buriti_Store.Orders.Application.Commands
 
             foreach(var error in message.ValidationResult.Errors)
             {
-                //TODO - Lançar um evento de erro
+                _mediatorHandler.PublishNotification(new DomainNotification(message.MessageType, error.ErrorMessage));
             }
 
             return false;

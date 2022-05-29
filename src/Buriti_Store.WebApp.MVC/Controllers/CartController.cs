@@ -7,6 +7,7 @@ using Buriti_Store.Core.Communication.Mediator;
 using Buriti_Store.Core.Messages.CommonMessages.Notifications;
 using MediatR;
 using Buriti_Store.Orders.Application.Queries.Interfaces;
+using Buriti_Store.Orders.Application.Queries.ViewModels;
 
 namespace Buriti_Store.WebApp.MVC.Controllers
 {
@@ -58,6 +59,82 @@ namespace Buriti_Store.WebApp.MVC.Controllers
             TempData["Erro"] = GetMessageError();
 
             return RedirectToAction("ProductDetails", "Showcase", new { id });
+        }
+
+        [HttpPost]
+        [Route("remove-item")]
+        public async Task<IActionResult> RemoveItem(Guid id)
+        {
+            var product = await _productAppService.GetById(id);
+            if (product == null) return BadRequest();
+
+            var command = new RemoveOrderItemCommand(ClientId, id);
+            await _mediator.SendCommand(command);
+
+            if (OperationIsValid())
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View("Index", await _orderQuery.GetCartClient(ClientId));
+        }
+
+        [HttpPost]
+        [Route("update-item")]
+        public async Task<IActionResult> UpdateItem(Guid id, int quantidade)
+        {
+            var product = await _productAppService.GetById(id);
+            if (product == null) return BadRequest();
+
+            var command = new UpdateOrderItemCommand(ClientId, id, quantidade);
+            await _mediator.SendCommand(command);
+
+            if (OperationIsValid())
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View("Index", await _orderQuery.GetCartClient(ClientId));
+        }
+
+        [HttpPost]
+        [Route("apply-voucher")]
+        public async Task<IActionResult> ApplyVoucher(string codeVoucher)
+        {
+            var command = new ApplyVoucherOrderCommand(ClientId, codeVoucher);
+            await _mediator.SendCommand(command);
+
+            if (OperationIsValid())
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View("Index", await _orderQuery.GetCartClient(ClientId));
+        }
+
+        [Route("order-summary")]
+        public async Task<IActionResult> OrderSummary()
+        {
+            return View(await _orderQuery.GetCartClient(ClientId));
+        }
+
+        [HttpPost]
+        [Route("start-order")]
+        public async Task<IActionResult> IniciarPedido(CartViewModel cartViewModel)
+        {
+            var cart = await _orderQuery.GetCartClient(ClientId);
+
+            var command = new StartOrderCommand(cart.OrderId, ClientId, cart.TotalValue, cartViewModel.Payment.NameCard,
+                cartViewModel.Payment.CardNumber, cartViewModel.Payment.ExpirationCard, cartViewModel.Payment.CvvCard);
+
+            await _mediator.SendCommand(command);
+
+            if (OperationIsValid())
+            {
+                return RedirectToAction("Index", "Order");
+            }
+
+            return View("PurchaseSummary", await _orderQuery.GetCartClient(ClientId));
         }
     }
 }

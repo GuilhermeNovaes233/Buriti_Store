@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\src\Buriti_Store.Core\Buriti_Store.Core.csproj" />
+  </ItemGroup>
+
 </Project>

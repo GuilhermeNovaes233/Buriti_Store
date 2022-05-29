@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Buriti_Store.Payment.Business\Buriti_Store.Payment.Business.csproj" />
+  </ItemGroup>
+
 </Project>

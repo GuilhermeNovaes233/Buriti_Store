@@ -6,6 +6,7 @@ using Buriti_store.Catalog.Application.Interfaces;
 using Buriti_Store.Core.Communication.Mediator;
 using Buriti_Store.Core.Messages.CommonMessages.Notifications;
 using MediatR;
+using Buriti_Store.Orders.Application.Queries.Interfaces;
 
 namespace Buriti_Store.WebApp.MVC.Controllers
 {
@@ -13,14 +14,23 @@ namespace Buriti_Store.WebApp.MVC.Controllers
     {
         private readonly IProductAppService _productAppService;
         private readonly IMediatorHandler _mediator;
+        private readonly IOrderQueries _orderQuery;
 
         public CartController(
             INotificationHandler<DomainNotification> notifications,
             IProductAppService productAppService, 
-            IMediatorHandler mediator) : base(notifications, mediator)
+            IMediatorHandler mediator,
+            IOrderQueries orderQuery) : base(notifications, mediator)
         {
+            _orderQuery = orderQuery;
             _productAppService = productAppService;
             _mediator = mediator;
+        }
+
+        [Route("my-cart")]
+        public async Task<IActionResult> Index()
+        {
+            return View(await _orderQuery.GetCartClient(ClientId));
         }
 
         [HttpPost]

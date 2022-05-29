@@ -11,6 +11,8 @@ using Buriti_Store.Orders.Application.Commands;
 using Buriti_Store.Core.Messages.CommonMessages.Notifications;
 using Buriti_Store.Core.Communication.Mediator;
 using Buriti_Store.Orders.Application.Events;
+using Buriti_Store.Orders.Application.Queries;
+using Buriti_Store.Orders.Application.Queries.Interfaces;
 
 namespace Buriti_Store.WebApp.MVC.Setup
 {
@@ -26,6 +28,8 @@ namespace Buriti_Store.WebApp.MVC.Setup
 
             // Catalogo
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IOrderQueries, OrderQueries>(); 
+
             services.AddScoped<IProductAppService, ProductAppService>();
             services.AddScoped<IStockService, StockService>();
             services.AddScoped<CatalogContext>();

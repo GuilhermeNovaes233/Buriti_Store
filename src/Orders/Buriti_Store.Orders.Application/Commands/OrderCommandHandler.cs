@@ -5,14 +5,17 @@ using Buriti_Store.Orders.Application.Events;
 using Buriti_Store.Orders.Domain;
 using Buriti_Store.Orders.Domain.Interfaces;
 using MediatR;
-using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Buriti_Store.Orders.Application.Commands
 {
-    public class OrderCommandHandler : IRequestHandler<AddOrderItemCommand, bool>
+    public class OrderCommandHandler : 
+        IRequestHandler<AddOrderItemCommand, bool>,
+        IRequestHandler<UpdateOrderItemCommand, bool>,
+        IRequestHandler<RemoveOrderItemCommand, bool>,
+        IRequestHandler<ApplyVoucherOrderCommand, bool>
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMediatorHandler _mediatorHandler;
@@ -58,6 +61,102 @@ namespace Buriti_Store.Orders.Application.Commands
             }
 
             order.AddEvent(new OrderItemAddedEvent(order.ClientId, order.Id,message.ProductId, message.Name, message.ValueUnity, message.Quantity));
+
+            return await _orderRepository.UnitOfWork.Commit();
+        }
+
+        public async Task<bool> Handle(UpdateOrderItemCommand message, CancellationToken cancellationToken)
+        {
+            if (!ValidateCommand(message)) return false;
+
+            var order = await _orderRepository.GetOrderDraftByCustomerId(message.ClientId);
+
+            if (order == null)
+            {
+                await _mediatorHandler.PublishNotification(new DomainNotification("Pedido", "Pedido não encontrado!"));
+                return false;
+            }
+
+            var orderItem = await _orderRepository.GetItemByOrder(order.Id, message.ProductId);
+
+            if (!order.ExistingOrderItem(orderItem))
+            {
+                await _mediatorHandler.PublishNotification(new DomainNotification("Pedido", "Item do pedido não encontrado!"));
+                return false;
+            }
+
+            order.UpdateUnits(orderItem, message.Quantity);
+            order.AddEvent(new OrderProductUpdatedEvent(message.ClientId, order.Id, message.ProductId, message.Quantity));
+
+            _orderRepository.UpdateItem(orderItem);
+            _orderRepository.Update(order);
+
+            return await _orderRepository.UnitOfWork.Commit();
+        }
+
+        public async Task<bool> Handle(RemoveOrderItemCommand message, CancellationToken cancellationToken)
+        {
+            if (!ValidateCommand(message)) return false;
+
+            var order = await _orderRepository.GetOrderDraftByCustomerId(message.ClientId);
+
+            if (order == null)
+            {
+                await _mediatorHandler.PublishNotification(new DomainNotification("Pedido", "Pedido não encontrado!"));
+                return false;
+            }
+
+            var orderItem = await _orderRepository.GetItemByOrder(order.Id, message.ProductId);
+
+            if (orderItem != null && !order.ExistingOrderItem(orderItem))
+            {
+                await _mediatorHandler.PublishNotification(new DomainNotification("Pedido", "Item do pedido não encontrado!"));
+                return false;
+            }
+
+            order.RemoveItem(orderItem);
+            order.AddEvent(new ProductOrderRemovedEvent(message.ClientId, order.Id, message.ProductId));
+
+            _orderRepository.RemoveItem(orderItem);
+            _orderRepository.Update(order);
+
+            return await _orderRepository.UnitOfWork.Commit();
+        }
+
+        public async Task<bool> Handle(ApplyVoucherOrderCommand message, CancellationToken cancellationToken)
+        {
+            if (!ValidateCommand(message)) return false;
+
+            var order = await _orderRepository.GetOrderDraftByCustomerId(message.ClientId);
+
+            if (order == null)
+            {
+                await _mediatorHandler.PublishNotification(new DomainNotification("Order", "order não encontrado!"));
+                return false;
+            }
+
+            var voucher = await _orderRepository.GetVoucherByCode(message.CodeVoucher);
+
+            if (voucher == null)
+            {
+                await _mediatorHandler.PublishNotification(new DomainNotification("Order", "Voucher não encontrado!"));
+                return false;
+            }
+
+            var voucherApplicationValidation = order.ApplyVoucher(voucher);
+            if (!voucherApplicationValidation.IsValid)
+            {
+                foreach (var error in voucherApplicationValidation.Errors)
+                {
+                    await _mediatorHandler.PublishNotification(new DomainNotification(error.ErrorCode, error.ErrorMessage));
+                }
+
+                return false;
+            }
+
+            order.AddEvent(new VoucherAppliedOrderEvent(message.ClientId, order.Id, voucher.Id));
+
+            _orderRepository.Update(order);
 
             return await _orderRepository.UnitOfWork.Commit();
         }

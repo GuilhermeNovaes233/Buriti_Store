@@ -1,10 +1,13 @@
 ﻿using Buriti_Store.Core.Communication.Mediator;
+using Buriti_Store.Core.DomainObjects.DTO;
+using Buriti_Store.Core.Extensions;
 using Buriti_Store.Core.Messages;
 using Buriti_Store.Core.Messages.CommonMessages.Notifications;
 using Buriti_Store.Orders.Application.Events;
 using Buriti_Store.Orders.Domain;
 using Buriti_Store.Orders.Domain.Interfaces;
 using MediatR;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,7 +18,9 @@ namespace Buriti_Store.Orders.Application.Commands
         IRequestHandler<AddOrderItemCommand, bool>,
         IRequestHandler<UpdateOrderItemCommand, bool>,
         IRequestHandler<RemoveOrderItemCommand, bool>,
-        IRequestHandler<ApplyVoucherOrderCommand, bool>
+        IRequestHandler<ApplyVoucherOrderCommand, bool>,
+        IRequestHandler<StartOrderCommand, bool>, 
+        IRequestHandler<FinishOrderCommand, bool>
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMediatorHandler _mediatorHandler;
@@ -158,6 +163,40 @@ namespace Buriti_Store.Orders.Application.Commands
 
             _orderRepository.Update(order);
 
+            return await _orderRepository.UnitOfWork.Commit();
+        }
+
+        public async Task<bool> Handle(StartOrderCommand message, CancellationToken cancellationToken)
+        {
+            if (!ValidateCommand(message)) return false;
+
+            var order = await _orderRepository.GetOrderDraftByCustomerId(message.ClientId);
+            order.StartOrder();
+
+            var items = new List<Item>();
+            order.OrderItems.ForEach(i => items.Add(new Item { Id = i.ProductId, Quantity = i.Quantity }));
+
+            var orderProducts = new ListProductsOrder { OrderId = order.Id, Items = items };
+
+            order.AddEvent(new OrderInitiatedEvent(order.Id, order.ClientId,  order.TotalValue, orderProducts, message.CardName, message.CardNumber, message.ExpirationCard, message.CvvCard));
+
+            _orderRepository.Update(order);
+            return await _orderRepository.UnitOfWork.Commit();
+        }
+
+        public async Task<bool> Handle(FinishOrderCommand message, CancellationToken cancellationToken)
+        {
+            var order = await _orderRepository.GetById(message.OrderId);
+
+            if (order == null)
+            {
+                await _mediatorHandler.PublishNotification(new DomainNotification("order", "Pedido não encontrado!"));
+                return false;
+            }
+
+            order.FinalizeOrder();
+
+            order.AddEvent(new OrderFinishedEvent(message.OrderId));
             return await _orderRepository.UnitOfWork.Commit();
         }
 

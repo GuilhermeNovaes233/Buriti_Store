@@ -36,12 +36,21 @@ namespace Buriti_Store.WebApp.MVC.Setup
 
             services.AddScoped<INotificationHandler<ProductOutOfStockEvent>, ProductEventHandler>();
 
-            //Orders
+            //Handler
             services.AddScoped<IRequestHandler<AddOrderItemCommand, bool>, OrderCommandHandler>();
 
+            //Commands
+            services.AddScoped<IRequestHandler<AddOrderItemCommand, bool>, OrderCommandHandler>();
+            services.AddScoped<IRequestHandler<ApplyVoucherOrderCommand, bool>, OrderCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveOrderItemCommand, bool>, OrderCommandHandler>();
+            //services.AddScoped<IRequestHandler<StartOrderCommand, bool>, OrderCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateOrderItemCommand, bool>, OrderCommandHandler>();
+
+            //Events
             services.AddScoped<INotificationHandler<OrderDraftStartedEvent>, OrderEventHandler>();
             services.AddScoped<INotificationHandler<OrderItemAddedEvent>, OrderEventHandler>();
             services.AddScoped<INotificationHandler<OrderUpdateEvent>, OrderEventHandler>();
+
         }
     }
 }

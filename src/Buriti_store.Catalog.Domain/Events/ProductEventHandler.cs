@@ -10,7 +10,8 @@ namespace Buriti_store.Catalog.Domain.Events
 {
     public class ProductEventHandler : 
         INotificationHandler<ProductOutOfStockEvent>,
-        INotificationHandler<OrderInitiatedEvent>
+        INotificationHandler<OrderInitiatedEvent>,
+        INotificationHandler<OrderProcessingCanceledEvent>
     {
         private readonly IProductRepository _productRepository;
         private readonly IStockService _stockService;
@@ -44,6 +45,11 @@ namespace Buriti_store.Catalog.Domain.Events
             {
                 await _mediatorHandler.PublishEvent(new OrderStockRejectedEvent(message.OrderId, message.ClientId));
             }
+        }
+
+        public async Task Handle(OrderProcessingCanceledEvent message, CancellationToken cancellationToken)
+        {
+            await _stockService.ReplenishListOrderProducts(message.ProductsOrder);
         }
     }
 }

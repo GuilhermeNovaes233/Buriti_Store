@@ -13,6 +13,7 @@ using Buriti_Store.Core.Communication.Mediator;
 using Buriti_Store.Orders.Application.Events;
 using Buriti_Store.Orders.Application.Queries;
 using Buriti_Store.Orders.Application.Queries.Interfaces;
+using Buriti_Store.Core.Messages.CommonMessages.IntegrationEvents;
 
 namespace Buriti_Store.WebApp.MVC.Setup
 {
@@ -41,16 +42,19 @@ namespace Buriti_Store.WebApp.MVC.Setup
 
             //Commands
             services.AddScoped<IRequestHandler<AddOrderItemCommand, bool>, OrderCommandHandler>();
-            services.AddScoped<IRequestHandler<ApplyVoucherOrderCommand, bool>, OrderCommandHandler>();
-            services.AddScoped<IRequestHandler<RemoveOrderItemCommand, bool>, OrderCommandHandler>();
-            //services.AddScoped<IRequestHandler<StartOrderCommand, bool>, OrderCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateOrderItemCommand, bool>, OrderCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveOrderItemCommand, bool>, OrderCommandHandler>();
+            services.AddScoped<IRequestHandler<ApplyVoucherOrderCommand, bool>, OrderCommandHandler>();
+            services.AddScoped<IRequestHandler<StartOrderCommand, bool>, OrderCommandHandler>();
+            services.AddScoped<IRequestHandler<FinishOrderCommand, bool>, OrderCommandHandler>();
+            services.AddScoped<IRequestHandler<CancelProcessingOrderCommand, bool>, OrderCommandHandler>();
+            services.AddScoped<IRequestHandler<CancelProcessingOrderReturnStockCommand, bool>, OrderCommandHandler>();
 
             //Events
             services.AddScoped<INotificationHandler<OrderDraftStartedEvent>, OrderEventHandler>();
-            services.AddScoped<INotificationHandler<OrderItemAddedEvent>, OrderEventHandler>();
-            services.AddScoped<INotificationHandler<OrderUpdateEvent>, OrderEventHandler>();
-
+            services.AddScoped<INotificationHandler<OrderStockRejectedEvent>, OrderEventHandler>();
+            services.AddScoped<INotificationHandler<OrderPaymentAccomplishedEvent>, OrderEventHandler>();
+            services.AddScoped<INotificationHandler<RequestPaymentDeclinedEvent>, OrderEventHandler>();
         }
     }
 }

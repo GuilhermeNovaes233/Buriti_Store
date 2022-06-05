@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Buriti_Store.Orders.Application.Queries.ViewModels.OrderViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <h4>Meus Pedidos</h4>
+            <hr>
+            <h5>Confira o status do seu pedido</h5>
+
+            @{
+                if (Model.Any())
+                {
+                    <br><br>
+                    <div class="table-responsive-sm">
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Pedido</th>
+                                    <th scope="col">Data Pedido</th>
+                                    <th scope="col">Status Pedido</th>
+                                    <th scope="col">Valor</th>
+                                    <th scope="col">Historia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var pedido in Model)
+                                    {
+                                        <tr>
+                                            <td>@pedido.Code</td>
+                                            <td>@pedido.DateRegister.ToShortDateString()</td>
+                                            <td>
+                                                <h4>
+
+                                                    @{
+                                                        if (pedido.OrderStatus == 4)
+                                                        {
+                                                            <span class="badge badge-success">
+                                                                Pago
+                                                            </span>
+                                                        }
+                                                        else if (pedido.OrderStatus == 6)
+                                                        {
+                                                            <span class="badge badge-danger">
+                                                                Cancelado
+                                                            </span>
+                                                        }
+                                                    }
+
+                                                </h4>
+                                            </td>
+                                            <td>@pedido.TotalValue.ToString("C")</td>
+                                            <td><a class="btn btn-info" asp-controller="Eventos" asp-action="Index" asp-route-id="@pedido.Id"><span class="far fa-clock"></span></a></td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p>Nenhum pedido</p>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+

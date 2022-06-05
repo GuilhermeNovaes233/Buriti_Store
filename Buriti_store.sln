@@ -39,11 +39,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buriti_Store.Orders.Applica
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buriti_Store.Orders.Data", "src\Orders\Buriti_Store.Orders.Data\Buriti_Store.Orders.Data.csproj", "{10A2E3A4-480F-478A-AF9C-2B06BB62D8CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buriti_Store.Payment.AntiCorruption", "src\Buriti_Store.Payment.AntiCorruption\Buriti_Store.Payment.AntiCorruption.csproj", "{44CEAC3A-1500-486F-A255-9356B2D473F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buriti_Store.Payment.AntiCorruption", "src\Buriti_Store.Payment.AntiCorruption\Buriti_Store.Payment.AntiCorruption.csproj", "{44CEAC3A-1500-486F-A255-9356B2D473F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buriti_Store.Payment.Business", "Buriti_Store.Payment.Business\Buriti_Store.Payment.Business.csproj", "{467F564E-C9E4-4A87-A8B3-630D2480D2D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buriti_Store.Payment.Business", "Buriti_Store.Payment.Business\Buriti_Store.Payment.Business.csproj", "{467F564E-C9E4-4A87-A8B3-630D2480D2D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buriti_Store.Payment.Data", "Buriti_Store.Payment.Data\Buriti_Store.Payment.Data.csproj", "{65B5CAB2-F6DC-4B15-8BBC-91908FCCA5E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buriti_Store.Payment.Data", "Buriti_Store.Payment.Data\Buriti_Store.Payment.Data.csproj", "{65B5CAB2-F6DC-4B15-8BBC-91908FCCA5E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{273B095C-1F78-49B4-B7D9-5AAE995D7537}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSourcing", "src\EventSourcing\EventSourcing.csproj", "{E8B1A1CC-425C-48DC-B060-8FA6DF05C231}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +103,10 @@ Global
 		{65B5CAB2-F6DC-4B15-8BBC-91908FCCA5E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65B5CAB2-F6DC-4B15-8BBC-91908FCCA5E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65B5CAB2-F6DC-4B15-8BBC-91908FCCA5E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8B1A1CC-425C-48DC-B060-8FA6DF05C231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8B1A1CC-425C-48DC-B060-8FA6DF05C231}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8B1A1CC-425C-48DC-B060-8FA6DF05C231}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8B1A1CC-425C-48DC-B060-8FA6DF05C231}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +131,7 @@ Global
 		{44CEAC3A-1500-486F-A255-9356B2D473F4} = {3F39D862-E800-4D52-81CE-272C67FDBED9}
 		{467F564E-C9E4-4A87-A8B3-630D2480D2D5} = {3F39D862-E800-4D52-81CE-272C67FDBED9}
 		{65B5CAB2-F6DC-4B15-8BBC-91908FCCA5E1} = {3F39D862-E800-4D52-81CE-272C67FDBED9}
+		{E8B1A1CC-425C-48DC-B060-8FA6DF05C231} = {273B095C-1F78-49B4-B7D9-5AAE995D7537}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3D03C45-1691-4E82-A7B2-1AAD357C8D08}
